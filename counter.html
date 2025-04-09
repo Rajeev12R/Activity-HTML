@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</head>
+<body>
+
+    <div class="flex justify-center items-center h-screen w-screen bg-blue-300">
+        <div class="bg-white w-[30%] mx-auto h-96 justify-center flex flex-col items-center rounded-lg shadow-lg gap-6 rounded-xl">
+            <h1 class="text-2xl text-center"> Countdown Timer</h1>
+            <input type="number" name="" id="input" class="py-2 px-4 text-center outline-none border-stone-700 border rounded-xl"/>
+            <button id="btn" type="button" class="px-6 py-2 bg-black text-gray-200 rounded-xl">Start</button>
+            <p class="text-sm text-center" id="alert"></p>
+        </div>
+    </div>
+</body>
+
+<script>
+    let input = document.getElementById("input");
+    let alert = document.getElementById("alert");
+    let button = document.getElementById("btn");
+
+    button.addEventListener("click", () => {
+        let time = input.value;
+        console.log(time);
+        
+        if(time > 0){
+            alert.innerHTML = `${time}`;
+            let count = setInterval(() => {
+                time--;
+                alert.innerHTML = `${time}`;
+                alert.classList.add("text-black");
+                if(time <= 0){
+                    clearInterval(count);
+                    alert.innerHTML = "Time's up!";
+                    alert.classList.remove("text-black");
+                    alert.classList.add("text-red-500");
+                }
+            }, 1000);
+        } else {  
+            alert.innerHTML = "Please enter a valid number";
+
+        }
+    })
+</script>
+</html>
