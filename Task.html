@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</head>
+<body>
+    <div class="flex items-center justify-center">
+        <div class="bg-white p-8 flex flex-col items-center rounded-lg shadow-lg gap-6">
+            <h1 class="">Dynamic Task Manager</h1>
+            <div class="flex gap-6">
+                <input type="text" name="" id="input" placeholder="Enter your task" class="py-3 px-6 outline-none border border-stone-700"/>
+                <button id="btn" class="py-2 px-4 bg-blue-500 text-white">Add Task</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const addTask = document.getElementById("btn");
+    const input = document.getElementById("input");
+    const taskList = document.createElement("div");
+    taskList.className = "flex flex-col gap-4 mt-4";
+    document.body.appendChild(taskList);
+    addTask.addEventListener("click", () => {
+    const task = document.createElement("div");
+    task.className = 'bg-gray-200 p-4 rounded-lg flex justify-between items-center';
+    task.innerHTML = `<span>${input.value}</span>
+            <button id ="deleteBtn" class="bg-red-500 text-white px-4 py-2 rounded-lg">Delete</button>`;
+    taskList.appendChild(task);
+    input.value = "";
+        
+    const deleteBtn = task.getElementsByTagName("button")[0];
+    deleteBtn.addEventListener("click", () => {
+        taskList.removeChild(task);
+    })
+});
+
+</script>
+</html>
